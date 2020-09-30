@@ -3,10 +3,17 @@ package src;
 public class Boletin1 {
 
     public static void main(String[] args) {
+        while (true) {
 
-        Ex1 ejercicios1 = new Ex1();
-        int selected = Integer.parseInt(readline("Introduzca Ejercicio: "));
-        ejercicios1.ExSelect(selected);
+            Ex1 ejercicios1 = new Ex1();
+            ejercicios1.ExSelect(0);
+            int selected = Integer.parseInt(readline("Introduzca Ejercicio: "));
+            clearScreen();
+            ejercicios1.ExSelect(selected);
+            readline("Presione Enter");
+
+        }
+
     }
 
     // Funciones para acceso rápido
@@ -25,4 +32,16 @@ public class Boletin1 {
 
     }
 
+    public static float Percentage(float value, int percentage) {
+
+        float percent = (value * percentage) / 100;
+
+        return percent;
+    }
+
+    // Copied From StackOverflow
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }
