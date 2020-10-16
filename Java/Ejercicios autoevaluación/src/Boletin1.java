@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Boletin1 {
 
+    static Scanner reader = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         println("1. Operadores");
@@ -35,10 +37,23 @@ public class Boletin1 {
                     readline("Presione Enter");
 
                 }
+            case 3:
+
+                while (true) {
+                    Ex3 ejercicios = new Ex3();
+                    ejercicios.ExSelect(0);
+                    int selected = Integer.parseInt(readline("Introduzca Ejercicio: "));
+                    clearScreen();
+                    ejercicios.ExSelect(selected);
+                    readline("Presione Enter");
+
+                }
+
             default:
                 break;
         }
 
+        reader.close();
     }
 
     // Funciones para acceso rápido
@@ -79,7 +94,6 @@ public class Boletin1 {
 
     public static String readStringScan(String st) {
         print(st);
-        Scanner reader = new Scanner(System.in);
 
         String line = reader.nextLine();
 
@@ -89,7 +103,6 @@ public class Boletin1 {
 
     public static int readIntScan(String st) {
         print(st);
-        Scanner reader = new Scanner(System.in);
 
         int line = reader.nextInt();
 
@@ -99,8 +112,6 @@ public class Boletin1 {
 
     public static double readDoubleScan(String st) {
         print(st);
-
-        Scanner reader = new Scanner(System.in);
 
         double line = reader.nextDouble();
 
@@ -113,4 +124,7 @@ public class Boletin1 {
         return rand.nextInt(max - min) + min;
     }
 
+    public static float RuleOfThree(float Value, float Comparison, float Converter) {
+        return ((Comparison * Converter) / Value);
+    }
 }
