@@ -1,137 +1,134 @@
 
 import java.util.Scanner;
 
-
-
-
-
-
-
 public class Ejercicio2 {
-    
-    public static void main(String[] args) {
-    
-        Scanner $reader;
-        String $emails[] = new String[10];
-        $emails[0] = "GerardoBorjes@gmail.com";
-        $emails[1] = "JohnDoe@yahoo.com";
-        $emails[2] = "JaneDoe@outlook.com";
-        $emails[3] = "Usuario@hotmail.com";
-        $emails[4] = "Usuario1@yahoo.com";
+    static Scanner gBDreader;
 
-System.out.println($emails[5]);
-        boolean $Salir = false;
+    public static void main(String[] args) {
+
+        String gBDemails[] = new String[10];
+        gBDemails[0] = "GerardoBorjes@gmail.com";
+        gBDemails[1] = "JohnDoe@yahoo.com";
+        gBDemails[2] = "JaneDoe@outlook.com";
+        gBDemails[3] = "Usuario@hotmail.com";
+        gBDemails[4] = "Usuario1@yahoo.com";
+
+        System.out.println(gBDemails[5]);
+        boolean gBDSalir = false;
         do {
-       
+
             System.out.println("1. Guardar un nuevo mail");
             System.out.println("2. Buscar un mail");
             System.out.println("3. Contar mails");
             System.out.println("4. Porcentaje de correos");
             System.out.println("5.Salir");
-            $reader = new Scanner(System.in);
-           int $opcion = $reader.nextInt();
-           switch ($opcion) {
-               case 1:
-                System.out.println("Introduce un correo");
-                $reader = new Scanner(System.in);
-                    String $mail = $reader.nextLine();
-                    $GuardarEnMatriz($emails, $mail);
-                   break;
+            gBDreader = new Scanner(System.in);
+            int gBDopcion = gBDreader.nextInt();
+            switch (gBDopcion) {
+                case 1:
+                    System.out.println("Introduce un correo");
+                    gBDreader = new Scanner(System.in);
+                    String gBDmail = gBDreader.nextLine();
+                    gBDGuardarEnMatriz(gBDemails, gBDmail);
+                    break;
 
-                   case 2:
-                   System.out.println("Escribe un mail para saber si existe");
-                   $reader = new Scanner(System.in);
-                   int $Index = $Encontrar($emails, $reader.nextLine());
-                   if($Index > -1){
-                        System.out.println("El email existe, está almacenado en la posición: " + $Index);
-                   }
-                   break;
-
-                   case 3:
-                   System.out.println("La cantidad de emails en la matriz es: " + $ContarLlenos($emails));
-                   break;
-
-                   case 4:
-                   String $Sufijos[] = {"gmail.com", "hotmail.com", "yahoo.com", "outlook.com"};
-                 int  $CantidadDeMails = $ContarLlenos($emails);
-                   for (int i = 0; i < $Sufijos.length; i++) {
-                        int $counter = 0;
-                       for (int j = 0; j < $emails.length; j++) {
-                           if($emails[j] != null){
-                             
-                         
-
-                            if($emails[j].substring($emails[j].lastIndexOf('@')+1) .equals($Sufijos[i])){
-
-                                $counter++;
-                           }
-                           }
-                     
-                           
-                        }
-
-                        System.out.println("El porcentaje de mails del dominio " + $Sufijos[i] + " Es del " + ((100*$counter)/$CantidadDeMails) + "%");
+                case 2:
+                    System.out.println("Escribe un mail para saber si existe");
+                    gBDreader = new Scanner(System.in);
+                    int gBDIndex = gBDEncontrar(gBDemails, gBDreader.nextLine());
+                    if (gBDIndex > -1) {
+                        System.out.println("El email existe, está almacenado en la posición: " + gBDIndex);
                     }
                     break;
-                    case 5:
-                    $Salir = true;
-                    $reader.close();
+
+                case 3:
+                    System.out.println("La cantidad de emails en la matriz es: " + gBDContarLlenos(gBDemails));
                     break;
-               
-               default:
-               $reader.close();
-               $Salir = true;
-                   break;
-           }
-            
-        } while (!$Salir);
+
+                case 4:
+                    String gBDSufijos[] = { "gmail.com", "hotmail.com", "yahoo.com", "outlook.com" };
+                    int gBDCantidadDeMails = gBDContarLlenos(gBDemails);
+                    for (int i = 0; i < gBDSufijos.length; i++) {
+                        int gBDcounter = 0;
+                        for (int j = 0; j < gBDemails.length; j++) {
+                            if (gBDemails[j] != null) {
+
+                                if (gBDemails[j].substring(gBDemails[j].lastIndexOf('@') + 1).equals(gBDSufijos[i])) {
+
+                                    gBDcounter++;
+                                }
+                            }
+
+                        }
+
+                        System.out.println("El porcentaje de mails del dominio " + gBDSufijos[i] + " Es del "
+                                + ((100 * gBDcounter) / gBDCantidadDeMails) + "%");
+                    }
+                    break;
+                case 5:
+                    gBDSalir = true;
+                    gBDreader.close();
+                    break;
+
+                default:
+                    gBDreader.close();
+                    gBDSalir = true;
+                    break;
+            }
+
+        } while (!gBDSalir);
 
     }
 
     /**
      * Método que cuenta el número de objetos dentro de un array que no son nulos.
+     * 
      * @param array
      * @return
      */
-    static int $ContarLlenos(Object array[]){
-        int $counter= 0;
+    static int gBDContarLlenos(Object array[]) {
+        int gBDcounter = 0;
         for (Object object : array) {
-            if(object != null){
-                $counter++;
+            if (object != null) {
+                gBDcounter++;
             }
         }
 
-        return $counter;
+        return gBDcounter;
 
     }
 
-
-/**
- * Método que recibe una matriz y un objeto, guarda el objeto en la primera posición no definida de la matriz.
- * @param array
- * @param item
- */
-    static void $GuardarEnMatriz(Object array[], Object item){
-   
-       for (int i = 0; i < array.length; i++) {
-           System.out.println(array[i]);
-           if(array[i] == null){
-                array[i] = item;
-          
-                break;
-           }
-       }
-    }
     /**
-     * Método que devuelve un entero con el índice de un objeto en una matriz, si no existe, devuelve -1
+     * Método que recibe una matriz y un objeto, guarda el objeto en la primera
+     * posición no definida de la matriz.
+     * 
+     * @param array
+     * @param item
+     */
+    static void gBDGuardarEnMatriz(Object array[], Object item) {
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+            if (array[i] == null) {
+                array[i] = item;
+
+                break;
+            }
+        }
+    }
+
+    /**
+     * Método que devuelve un entero con el índice de un objeto en una matriz, si no
+     * existe, devuelve -1
+     * 
      * @param array
      * @param item
      * @return
      */
-    static int $Encontrar(Object array[], Object item){
+    static int gBDEncontrar(Object array[], Object item) {
 
         for (int i = 0; i < array.length; i++) {
-            if(array[i].equals(item)){
+            if (array[i].equals(item)) {
                 return i;
             }
         }
