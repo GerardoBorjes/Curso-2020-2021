@@ -1,6 +1,6 @@
 public class EjercicioBuscarNumeros {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         int nums[] = { 1, 2, 3, 4, 4, 2, 1, 4, 6, 3, 5, 2 };
         BuscarNumeros(nums, 4, 3);
     }
