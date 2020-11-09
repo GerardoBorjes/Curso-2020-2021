@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "library/**/*.jar",
+        "/home/username/lib/foo.jar",
+        "c:\\Users\\user\\Desktop\\ElvenLib\\ElvenLib.jar"
+    ]
+}
